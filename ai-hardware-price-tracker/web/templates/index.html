@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PriceScout - AI硬件价格采集与对比工具</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="app">
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="logo-icon">🔍</span>
+                    <span class="logo-text">PriceScout</span>
+                    <span class="logo-tag">AI硬件价格追踪</span>
+                </div>
+                <nav class="nav">
+                    <button class="nav-btn active" data-tab="search">
+                        <span>🔎</span> 价格搜索
+                    </button>
+                    <button class="nav-btn" data-tab="charts">
+                        <span>📊</span> 数据图表
+                    </button>
+                    <button class="nav-btn" data-tab="about">
+                        <span>ℹ️</span> 关于
+                    </button>
+                </nav>
+            </div>
+        </header>
+
+        <main class="main">
+            <section id="search-tab" class="tab-content active">
+                <div class="search-section">
+                    <div class="search-container">
+                        <h2 class="section-title">
+                            <span class="title-icon">🎯</span>
+                            智能价格搜索
+                        </h2>
+                        <p class="section-desc">输入关键词，从多个平台批量采集AI硬件商品价格信息</p>
+                        
+                        <div class="search-box">
+                            <div class="search-input-wrapper">
+                                <input type="text" id="keyword-input" 
+                                       placeholder="输入关键词，如: RTX 4090, A100, i9-14900K"
+                                       value="RTX 4090">
+                                <button id="search-btn" class="search-btn">
+                                    <span class="btn-icon">🚀</span>
+                                    开始采集
+                                </button>
+                            </div>
+                            
+                            <div class="search-options">
+                                <div class="option-group">
+                                    <label>采集平台</label>
+                                    <div class="platform-select">
+                                        <label class="checkbox-item">
+                                            <input type="checkbox" value="jd" checked>
+                                            <span class="checkmark">🟠</span> 京东
+                                        </label>
+                                        <label class="checkbox-item">
+                                            <input type="checkbox" value="tb" checked>
+                                            <span class="checkmark">🟡</span> 淘宝
+                                        </label>
+                                        <label class="checkbox-item">
+                                            <input type="checkbox" value="pdd" checked>
+                                            <span class="checkmark">🟢</span> 拼多多
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="option-group">
+                                    <label>采集数量</label>
+                                    <select id="limit-select">
+                                        <option value="10">每平台 10 条</option>
+                                        <option value="20" selected>每平台 20 条</option>
+                                        <option value="30">每平台 30 条</option>
+                                        <option value="50">每平台 50 条</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="progress-area" class="progress-area hidden">
+                            <div class="progress-info">
+                                <div class="progress-spinner"></div>
+                                <span id="progress-text">正在准备采集...</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="results-section" class="results-section">
+                    <div class="results-header">
+                        <div class="results-stats">
+                            <span id="results-count">0</span> 件商品
+                            <span class="divider">|</span>
+                            <span id="price-range">¥0 - ¥0</span>
+                        </div>
+                        <div class="results-actions">
+                            <select id="sort-select" class="sort-select">
+                                <option value="price-asc">价格 ↑ 低到高</option>
+                                <option value="price-desc">价格 ↓ 高到低</option>
+                                <option value="sales-desc">销量 ↓ 最高</option>
+                                <option value="score-desc">评分 ↓ 最高</option>
+                            </select>
+                            <button id="export-btn" class="action-btn">
+                                <span>📥</span> 导出数据
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="products-grid" class="products-grid">
+                    </div>
+
+                    <div id="loading-indicator" class="loading-indicator hidden">
+                        <div class="loading-spinner"></div>
+                        <span>加载中...</span>
+                    </div>
+                </div>
+            </section>
+
+            <section id="charts-tab" class="tab-content">
+                <div class="charts-container">
+                    <h2 class="section-title">
+                        <span class="title-icon">📊</span>
+                        数据可视化分析
+                    </h2>
+                    
+                    <div class="charts-grid">
+                        <div class="chart-card">
+                            <h3>价格分布</h3>
+                            <div id="price-distribution-chart" class="chart-wrapper"></div>
+                        </div>
+                        <div class="chart-card">
+                            <h3>销量排行 TOP 10</h3>
+                            <div id="sales-ranking-chart" class="chart-wrapper"></div>
+                        </div>
+                        <div class="chart-card">
+                            <h3>平台商品分布</h3>
+                            <div id="platform-distribution-chart" class="chart-wrapper"></div>
+                        </div>
+                        <div class="chart-card">
+                            <h3>价格-销量关系</h3>
+                            <div id="price-sales-chart" class="chart-wrapper"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="about-tab" class="tab-content">
+                <div class="about-section">
+                    <h2 class="section-title">
+                        <span class="title-icon">ℹ️</span>
+                        关于 PriceScout
+                    </h2>
+                    
+                    <div class="about-content">
+                        <div class="about-card">
+                            <h3>🎯 项目简介</h3>
+                            <p>PriceScout 是一款专业的AI硬件价格采集与对比工具，支持从京东、淘宝、拼多多等主流电商平台批量采集商品价格信息，提供数据清洗、智能排序、性价比推荐和数据可视化功能。</p>
+                        </div>
+                        
+                        <div class="about-card">
+                            <h3>⚡ 核心功能</h3>
+                            <ul>
+                                <li>多平台并发采集 - 同时从多个电商平台获取数据</li>
+                                <li>智能数据清洗 - 自动去除无效和重复数据</li>
+                                <li>性价比算法 - 基于价格、销量、评分计算性价比指数</li>
+                                <li>数据可视化 - 图表展示价格分布和趋势</li>
+                                <li>多种导出格式 - 支持 JSON、CSV 格式导出</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="about-card">
+                            <h3>🛠️ 技术栈</h3>
+                            <div class="tech-stack">
+                                <span class="tech-tag">Python 3.10+</span>
+                                <span class="tech-tag">Flask</span>
+                                <span class="tech-tag">Vue 3</span>
+                                <span class="tech-tag">ECharts</span>
+                                <span class="tech-tag">Click</span>
+                                <span class="tech-tag">asyncio</span>
+                            </div>
+                        </div>
+
+                        <div class="about-card">
+                            <h3>📋 使用示例</h3>
+                            <div class="cli-examples">
+                                <code>python -m cli.main search -k "RTX 4090" -p jd -p tb -l 20</code>
+                                <code>python -m cli.main example</code>
+                                <code>python -m cli.main analyze data.json</code>
+                                <code>python -m cli.main platforms</code>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>PriceScout © 2024 | AI硬件价格采集与对比工具</p>
+        </footer>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

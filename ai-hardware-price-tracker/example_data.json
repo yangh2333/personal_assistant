@@ -1,0 +1,191 @@
+[
+  {
+    "id": "demo_010",
+    "name": "长江存储 2TB NVMe SSD 固态硬盘",
+    "price": 899.0,
+    "sales": 12000,
+    "shop_name": "厂家直销店",
+    "shop_score": 4.5,
+    "platform": "tb",
+    "platform_icon": "🟡",
+    "platform_name": "淘宝",
+    "url": "https://item.taobao.com/item.htm?id=111222333",
+    "image": "https://via.placeholder.com/200x200?text=NVMe+2TB",
+    "crawl_time": "2024-01-15T10:30:00",
+    "tags": [
+      "🔥 热销爆款",
+      "📍 价格最低",
+      "💰 性价比之选"
+    ],
+    "value_score": 0.98
+  },
+  {
+    "id": "demo_009",
+    "name": "三星 64GB DDR5 4800 服务器内存",
+    "price": 2599.0,
+    "sales": 1800,
+    "shop_name": "正品保障旗舰店",
+    "shop_score": 4.7,
+    "platform": "jd",
+    "platform_icon": "🟠",
+    "platform_name": "京东",
+    "url": "https://item.jd.com/100077777777.html",
+    "image": "https://via.placeholder.com/200x200?text=DDR5+64G",
+    "crawl_time": "2024-01-15T10:30:00",
+    "tags": [],
+    "value_score": 0.732
+  },
+  {
+    "id": "demo_007",
+    "name": "Intel i9-14900K 24核 处理器",
+    "price": 3899.0,
+    "sales": 4200,
+    "shop_name": "数码科技专营店",
+    "shop_score": 4.7,
+    "platform": "jd",
+    "platform_icon": "🟠",
+    "platform_name": "京东",
+    "url": "https://item.jd.com/100066666666.html",
+    "image": "https://via.placeholder.com/200x200?text=i9-14900K",
+    "crawl_time": "2024-01-15T10:30:00",
+    "tags": [
+      "💰 性价比之选"
+    ],
+    "value_score": 0.797
+  },
+  {
+    "id": "demo_008",
+    "name": "AMD Ryzen 9 7950X3D 处理器",
+    "price": 4199.0,
+    "sales": 3100,
+    "shop_name": "AMD官方旗舰店",
+    "shop_score": 4.8,
+    "platform": "pdd",
+    "platform_icon": "🟢",
+    "platform_name": "拼多多",
+    "url": "https://youhui.pinduoduo.com/goods/67890",
+    "image": "https://via.placeholder.com/200x200?text=R9-7950X3D",
+    "crawl_time": "2024-01-15T10:30:00",
+    "tags": [
+      "⭐ 金牌店铺",
+      "💰 性价比之选"
+    ],
+    "value_score": 0.766
+  },
+  {
+    "id": "demo_005",
+    "name": "NVIDIA RTX 4070 Ti SUPER 16G 显卡",
+    "price": 5999.0,
+    "sales": 9800,
+    "shop_name": "京东自营旗舰店",
+    "shop_score": 4.8,
+    "platform": "jd",
+    "platform_icon": "🟠",
+    "platform_name": "京东",
+    "url": "https://item.jd.com/100055555555.html",
+    "image": "https://via.placeholder.com/200x200?text=RTX+4070TiS",
+    "crawl_time": "2024-01-15T10:30:00",
+    "tags": [
+      "🔥 热销爆款",
+      "📍 价格最低",
+      "💰 性价比之选"
+    ],
+    "value_score": 0.957
+  },
+  {
+    "id": "demo_004",
+    "name": "AMD RX 7900 XTX 24G 显卡",
+    "price": 7899.0,
+    "sales": 3800,
+    "shop_name": "AMD官方旗舰店",
+    "shop_score": 4.8,
+    "platform": "jd",
+    "platform_icon": "🟠",
+    "platform_name": "京东",
+    "url": "https://item.jd.com/100045678901.html",
+    "image": "https://via.placeholder.com/200x200?text=RX+7900XTX",
+    "crawl_time": "2024-01-15T10:30:00",
+    "tags": [
+      "💰 性价比之选",
+      "⭐ 金牌店铺"
+    ],
+    "value_score": 0.767
+  },
+  {
+    "id": "demo_003",
+    "name": "NVIDIA RTX 4080 SUPER 16G 显卡",
+    "price": 7999.0,
+    "sales": 6200,
+    "shop_name": "电脑配件专营店",
+    "shop_score": 4.6,
+    "platform": "pdd",
+    "platform_icon": "🟢",
+    "platform_name": "拼多多",
+    "url": "https://youhui.pinduoduo.com/goods/12345",
+    "image": "https://via.placeholder.com/200x200?text=RTX+4080S",
+    "crawl_time": "2024-01-15T10:30:00",
+    "tags": [
+      "💰 性价比之选",
+      "🔥 热销爆款"
+    ],
+    "value_score": 0.83
+  },
+  {
+    "id": "demo_001",
+    "name": "NVIDIA RTX 4090 24G 公版 显卡",
+    "price": 12999.0,
+    "sales": 8500,
+    "shop_name": "NVIDIA官方旗舰店",
+    "shop_score": 4.9,
+    "platform": "jd",
+    "platform_icon": "🟠",
+    "platform_name": "京东",
+    "url": "https://item.jd.com/100038046894.html",
+    "image": "https://via.placeholder.com/200x200?text=RTX+4090",
+    "crawl_time": "2024-01-15T10:30:00",
+    "tags": [
+      "💰 性价比之选",
+      "🔥 热销爆款",
+      "⭐ 金牌店铺"
+    ],
+    "value_score": 0.883
+  },
+  {
+    "id": "demo_002",
+    "name": "华硕 ROG STRIX RTX 4090 24G 电竞显卡",
+    "price": 16999.0,
+    "sales": 5200,
+    "shop_name": "华硕ROG旗舰店",
+    "shop_score": 4.9,
+    "platform": "tb",
+    "platform_icon": "🟡",
+    "platform_name": "淘宝",
+    "url": "https://item.taobao.com/item.htm?id=123456789",
+    "image": "https://via.placeholder.com/200x200?text=ROG+4090",
+    "crawl_time": "2024-01-15T10:30:00",
+    "tags": [
+      "⭐ 金牌店铺",
+      "💰 性价比之选",
+      "🔥 热销爆款"
+    ],
+    "value_score": 0.762
+  },
+  {
+    "id": "demo_006",
+    "name": "NVIDIA A100 80GB PCIe 计算卡 AI加速器",
+    "price": 89999.0,
+    "sales": 450,
+    "shop_name": "NVIDIA官方旗舰店",
+    "shop_score": 4.9,
+    "platform": "tb",
+    "platform_icon": "🟡",
+    "platform_name": "淘宝",
+    "url": "https://item.taobao.com/item.htm?id=987654321",
+    "image": "https://via.placeholder.com/200x200?text=A100",
+    "crawl_time": "2024-01-15T10:30:00",
+    "tags": [
+      "⭐ 金牌店铺"
+    ],
+    "value_score": 0.21
+  }
+]
