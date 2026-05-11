@@ -8,6 +8,11 @@ import sys
 # 添加项目根目录到Python路径
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
+# 如果有虚拟环境，使用虚拟环境的Python
+venv_python = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'venv', 'bin', 'python')
+if os.path.exists(venv_python):
+    os.execv(venv_python, [venv_python] + sys.argv)
+
 from app import create_app, init_database
 
 def main():

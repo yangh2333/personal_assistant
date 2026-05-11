@@ -38,31 +38,32 @@ def calculate_cost():
     
     data = request.get_json()
     
-    # 构建计算配置
-    config = {
-        'gpu_count': data.get('gpu_count', 1024),
-        'gpu_model': data.get('gpu_model', 'H200'),
-        'server_count': data.get('server_count', 0),
-        'power_consumption_kw': data.get('power_consumption_kw', 0),
-        'electricity_price': data.get('electricity_price', 0.6),
-        'pue_ratio': data.get('pue_ratio', 1.3),
-        'location_type': data.get('location_type', 'colocation')
-    }
+    cluster = None
     
-    # 如果指定了集群规模，使用预设配置
     cluster_scale = data.get('cluster_scale')
     if cluster_scale:
         cluster = ClusterConfig.query.filter_by(cluster_scale=cluster_scale).first()
-        if cluster:
-            config = {
-                'gpu_count': cluster.gpu_count,
-                'gpu_model': cluster.gpu_model,
-                'server_count': cluster.server_count,
-                'power_consumption_kw': cluster.power_consumption_kw,
-                'electricity_price': cluster.electricity_price,
-                'pue_ratio': cluster.pue_ratio,
-                'location_type': cluster.location_type
-            }
+    
+    if cluster:
+        config = {
+            'gpu_count': cluster.gpu_count,
+            'gpu_model': cluster.gpu_model,
+            'server_count': cluster.server_count,
+            'power_consumption_kw': cluster.power_consumption_kw,
+            'electricity_price': cluster.electricity_price,
+            'pue_ratio': cluster.pue_ratio,
+            'location_type': cluster.location_type
+        }
+    else:
+        config = {
+            'gpu_count': data.get('gpu_count', 1024),
+            'gpu_model': data.get('gpu_model', 'H200'),
+            'server_count': data.get('server_count', 0),
+            'power_consumption_kw': data.get('power_consumption_kw', 0),
+            'electricity_price': data.get('electricity_price', 0.6),
+            'pue_ratio': data.get('pue_ratio', 1.3),
+            'location_type': data.get('location_type', 'colocation')
+        }
     
     # 获取所有启用的成本项
     cost_items = CostItem.query.filter_by(is_active=True).all()
